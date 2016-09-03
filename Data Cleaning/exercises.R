@@ -91,3 +91,54 @@ c(mean(ho$X.1,na.rm=TRUE), mean(hn$X.1,na.rm=TRUE))
 ## question 5
 rmo$quantile <-cut(rmo$X.1,5)
 rt<-rmo[which(rmo$Income.Group=="Lower middle income"),]
+
+##
+## week 4
+##
+
+##question 1
+fileURL="https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv"
+download.file(fileURL,destfile="./acs4.csv")
+racs<-read.csv("acs4.csv",stringsAsFactors=FALSE)
+vnames<-names(racs)
+sp<-strsplit(vnames,"wgtp")
+sp[123]
+
+##question 2
+rgdp<-read.csv("gdp.csv", skip=4, nrow=190, stringsAsFactors=FALSE)
+rstrip <- mutate(rgdp,X.4=as.numeric(gsub(pattern=",",replacement="",x=X.4)))
+avg <- mean(rstrip$X.4,na.rm=T)
+
+##question 3
+grep("^United",rstrip$X.3) 
+
+##question 4
+rgdp<-read.csv("gdp.csv", skip=4, nrow=190, stringsAsFactors=FALSE)
+redu<-read.csv("edu.csv",stringsAsFactors=FALSE)
+rm <- merge(x=rgdp,y=redu,by.x="X",by.y="CountryCode",all=TRUE) 
+
+#Look at Special.Notes column "Fiscal year end: Month Day;
+length(grep("^Fiscal year end: June .*$",rm$Special.Notes))
+
+##question 5
+library(quantmod)
+amzn = getSymbols("AMZN",auto.assign=FALSE)
+sampleTimes = index(amzn)
+
+f <- function() {
+r2012<-0
+r2012Monday <- 0
+for (i in 1:length(sampleTimes)) {
+    d<-sampleTimes[i]
+    if (year(d)==2012) {
+        r2012 <- r2012+1
+        if (weekdays(d)=="Montag"){
+            r2012Monday <-  r2012Monday+1
+            }
+        }
+}
+print (r2012)
+print (r2012Monday)
+}
+
+
