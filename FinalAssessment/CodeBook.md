@@ -5,7 +5,8 @@ The purpose of run_analysis() is to create a create a tidy data set containing t
 Here are the data:
     https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-VARIABLE AND DATA DESCRIPTION  
+VARIABLE AND DATA DESCRIPTION
+
 A description of the original is available at the site where the data was obtained http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+SmartphonesDetailed information as well as in features.txt file contained in the zip file.
 
 A description of the resulting data (alltidy.txt) is as follow
@@ -81,6 +82,7 @@ A description of the resulting data (alltidy.txt) is as follow
  $ fBodyBodyGyroJerkMag-mean(): num  -0.942 -0.99 -0.995 -0.319 -0.282 ...
 
 TRANSFORMATION
+
 The zip file mentionned above was downloaded on 3 September 2016. The following steps were performed:
 
 1- Extract the columns representing the mean() and std() from train/x_train.txt and test/test_x.txt
